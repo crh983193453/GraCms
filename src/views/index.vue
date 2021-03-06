@@ -4,16 +4,13 @@
     <div class="boxGroup">
       <div class="firstBox">
         <div class="data_box">
-          1
+          <div class="plot" style="width: 45rem; height: 30rem" id="bj"></div>
         </div>
         <div class="data_box">
-          1
+          <div class="plot" style="width: 45rem; height: 30rem" id="sj"></div>
         </div>
         <div class="data_box">
-          1
-        </div>
-        <div class="data_box">
-          1
+          <div class="plot" style="width: 45rem; height: 30rem" id="gj"></div>
         </div>
       </div>
       <div class="boxs">
@@ -33,7 +30,9 @@ let echarts = require("echarts/lib/echarts");
 // 引入柱状图组件
 require("echarts/lib/chart/pie");
 require("echarts/lib/chart/line");
+// require("echarts/lib/chart/linechart");
 // 引入提示框和title组件
+require("echarts/lib/component/grid");
 require("echarts/lib/component/tooltip");
 require("echarts/lib/component/title");
 require("echarts/lib/component/visualMap");
@@ -84,7 +83,7 @@ export default {
               { value: 30, name: "事假" },
               { value: 15, name: "公假" },
               { value: 40, name: "其他" },
-            ].sort(function(a, b) {
+            ].sort(function (a, b) {
               return a.value - b.value;
             }),
             roseType: "radius",
@@ -107,7 +106,7 @@ export default {
 
             animationType: "scale",
             animationEasing: "elasticOut",
-            animationDelay: function() {
+            animationDelay: function () {
               return Math.random() * 200;
             },
           },
@@ -117,7 +116,7 @@ export default {
     sencond() {
       let chart = echarts.init(document.getElementById("sencond"));
       chart.setOption({
-        tooltip:{
+        tooltip: {
           trigger: "axis",
           axisPointer: {
             type: "cross",
@@ -160,10 +159,94 @@ export default {
         ],
       });
     },
+    sj() {
+      let chart = echarts.init(document.getElementById("sj"));
+      chart.setOption({
+        xAxis: {
+          type: "category",
+          data: ["前一天", "前两天", "第三天", "第四天", "前五天", "前六天", "前七天"],
+        },
+        yAxis: {
+          type: "value",
+        },
+        title: {
+          text: "近七天事假人数统计",
+          left: "center",
+          top: 20,
+          textStyle: {
+            color: "black",
+          },
+        },
+        series: [
+          {
+            data: [16, 24, 0, 5, 36, 48, 128],
+            type: "line",
+            smooth: true,
+          },
+        ],
+      });
+    },
+    gj() {
+      let chart = echarts.init(document.getElementById("gj"));
+      chart.setOption({
+        xAxis: {
+          type: "category",
+          data: ["前一天", "前两天", "第三天", "第四天", "前五天", "前六天", "前七天"],
+        },
+        yAxis: {
+          type: "value",
+        },
+        title: {
+          text: "近七天公假人数统计",
+          left: "center",
+          top: 20,
+          textStyle: {
+            color: "black",
+          },
+        },
+        series: [
+          {
+            data: [46, 1, 88, 32, 48, 77, 12],
+            type: "line",
+            smooth: true,
+          },
+        ],
+      });
+    },
+    bj() {
+      let chart = echarts.init(document.getElementById("bj"));
+      chart.setOption({
+        xAxis: {
+          type: "category",
+          data: ["前一天", "前两天", "第三天", "第四天", "前五天", "前六天", "前七天"],
+        },
+        yAxis: {
+          type: "value",
+        },
+        title: {
+          text: "近七天病假人数统计",
+          left: "center",
+          top: 20,
+          textStyle: {
+            color: "black",
+          },
+        },
+        series: [
+          {
+            data: [54, 12, 78, 22, 18, 9, 0],
+            type: "line",
+            smooth: true,
+          },
+        ],
+      });
+    },
   },
   mounted() {
     this.firs();
     this.sencond();
+    this.bj();
+    this.sj();
+    this.gj();
   },
 };
 </script>
@@ -212,5 +295,9 @@ export default {
     width: 10rem;
     height: 4rem;
   }
+}
+.data_box {
+  // width: 75rem;
+  // height: 30rem;
 }
 </style>

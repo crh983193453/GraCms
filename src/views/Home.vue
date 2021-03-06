@@ -36,8 +36,8 @@
               <span>用户管理</span>
             </el-menu-item>
           </router-link>
-          <router-link to="/home/userManage">
-            <el-menu-item index="5">
+          <router-link to="/home/fileManage">
+            <el-menu-item index="6">
               <i class="el-icon-folder-opened"></i>
               <span>文件管理</span>
             </el-menu-item>

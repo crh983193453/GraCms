@@ -45,6 +45,12 @@ const routes = [
         name:'userManage',
         meta:{name:'用户管理'},
         component:()=> import ("@/views/userManage.vue")
+      },
+      {
+        path:'fileManage',
+        name:'fileManage',
+        meta:{name:'文件管理'},
+        component:()=> import ("@/views/fileManage.vue")
       }
     ]
   },

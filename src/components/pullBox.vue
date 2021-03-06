@@ -66,7 +66,8 @@ export default {
 .settingBox {
   position: absolute;
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
+  max-height: 40rem;
   .options {
     cursor: pointer;
     padding: 0.5rem 0;
@@ -76,7 +77,8 @@ export default {
     background: #fff;
   }
   .options:hover {
-    background-color: rgb(182, 182, 182);
+    background-color: #BBDCFE;
+    transition: .6s;
   }
 }
 .pull-enter {
