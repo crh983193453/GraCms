@@ -58,25 +58,25 @@
         <el-button type="primary" @click="delUser">确 定</el-button>
       </span>
     </el-dialog>
-    <modal :isShow.sync="editPop">
+    <Modal :isShow.sync="editPop">
       <div v-if="editPop">
         <div class="infos">
           <div class="desc">
             所在分院:
-            <pull-box style="left:15rem;text-align:center;z-index:99" :optionList="fyList" @click="fyChoose"></pull-box>
+            <Pull-box style="left:15rem;text-align:center;z-index:99" :optionList="fyList" @click="fyChoose"></Pull-box>
           </div>
           <div class="desc">
             所在班级:
-            <pull-box style="left:15rem;text-align:center;z-index:98" :optionList="bjList" @click="bjChoose"></pull-box>
+            <Pull-box style="left:15rem;text-align:center;z-index:98" :optionList="bjList" @click="bjChoose"></Pull-box>
           </div>
           <div class="desc">
             权限设置:
-            <pull-box style="left:15rem;text-align:center;z-index:97" :optionList="powerList" @click="powerChoose"></pull-box>
+            <Pull-box style="left:15rem;text-align:center;z-index:97" :optionList="powerList" @click="powerChoose"></Pull-box>
           </div>
           <el-button type="primary" @click="updateUser">修改</el-button>
         </div>
       </div>
-    </modal>
+    </Modal>
   </div>
 </template>
 

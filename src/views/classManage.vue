@@ -41,7 +41,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <modal :isShow.sync="showKqPops">
+    <Modal :isShow.sync="showKqPops">
       <div v-if="showKqPops">
         <div class="infos">
           <div class="infoBox">
@@ -60,7 +60,7 @@
           </div>
         </div>
       </div>
-    </modal>
+    </Modal>
   </div>
 </template>
 

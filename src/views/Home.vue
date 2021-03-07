@@ -1,7 +1,7 @@
 <template>
   <el-container class="el-headers">
     <el-header style="height:6rem">
-      <headers userName="hhhhhhhhhhhhhhh" :optionList="list" @child="receive"></headers>
+      <Headers userName="hhhhhhhhhhhhhhh" :optionList="list" @child="receive"></Headers>
     </el-header>
     <el-container>
       <el-aside class="nav" width="20rem">

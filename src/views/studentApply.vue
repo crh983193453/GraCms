@@ -3,7 +3,6 @@
   <div class="bodys">
     <div class="dataScreen">
       <el-date-picker
-        v-model="value1"
         type="daterange"
         range-separator="至"
         start-placeholder="开始日期"
@@ -86,16 +85,35 @@
         </div>
       </div>
     </el-dialog>
-    <Masks :isShow.sync="imgMask">
+    <Mask :isShow.sync="imgMask">
       <img src="../static/img/2.jpg" alt="" />
-    </Masks>
+    </Mask>
   </div>
-</template>
-<script>
-import Masks from "@/components/mask.vue";
+</template> 
+<script> 
+import mask from "../components/mask.vue";
 export default {
   components: {
-    Masks,
+    mask,
+  },
+  data() {
+    return {
+      imgMask: false,
+      showMask: false,
+      preview: "",
+      index: "",
+      tableData: [
+        {
+          date: "2016-05-02",
+          name: "王小虎",
+          reason: "上海",
+          startTime: "2020-11-23",
+          endTime: "2020-11-26",
+          administrator: "陈儒浩",
+          status: "未审批",
+        },
+      ],
+    };
   },
   methods: {
     maskClick(e, index) {
@@ -117,25 +135,6 @@ export default {
       this.tableData[this.index].status = "已拒绝";
     },
   },
-  data() {
-    return {
-      imgMask: false,
-      showMask: false,
-      preview: "",
-      index: "",
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          reason: "上海",
-          startTime: "2020-11-23",
-          endTime: "2020-11-26",
-          administrator: "陈儒浩",
-          status: "未审批",
-        },
-      ],
-    };
-  },
 };
 </script>
 
@@ -143,7 +142,7 @@ export default {
 .bodys {
   position: absolute;
 }
-.dataScreen{
+.dataScreen {
   position: relative;
   margin-left: 5rem;
 }

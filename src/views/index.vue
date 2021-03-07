@@ -164,10 +164,22 @@ export default {
       chart.setOption({
         xAxis: {
           type: "category",
-          data: ["前一天", "前两天", "第三天", "第四天", "前五天", "前六天", "前七天"],
+          data: [
+            "前一天",
+            "前两天",
+            "第三天",
+            "第四天",
+            "前五天",
+            "前六天",
+            "前七天",
+          ],
         },
         yAxis: {
           type: "value",
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "事假<br/>{b} : {c}人",
         },
         title: {
           text: "近七天事假人数统计",
@@ -191,10 +203,22 @@ export default {
       chart.setOption({
         xAxis: {
           type: "category",
-          data: ["前一天", "前两天", "第三天", "第四天", "前五天", "前六天", "前七天"],
+          data: [
+            "前一天",
+            "前两天",
+            "第三天",
+            "第四天",
+            "前五天",
+            "前六天",
+            "前七天",
+          ],
         },
         yAxis: {
           type: "value",
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "公假<br/>{b} : {c}人",
         },
         title: {
           text: "近七天公假人数统计",
@@ -218,10 +242,22 @@ export default {
       chart.setOption({
         xAxis: {
           type: "category",
-          data: ["前一天", "前两天", "第三天", "第四天", "前五天", "前六天", "前七天"],
+          data: [
+            "前一天",
+            "前两天",
+            "第三天",
+            "第四天",
+            "前五天",
+            "前六天",
+            "前七天",
+          ],
         },
         yAxis: {
           type: "value",
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "病假<br/>{b} : {c}人",
         },
         title: {
           text: "近七天病假人数统计",

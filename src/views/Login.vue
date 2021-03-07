@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import service from "@/utils/request"
+// import service from "@/utils/request"
 export default {
   data() {
     return {
@@ -100,8 +100,8 @@ export default {
     };
   },
   created() {
-    const res = service('/test',{},'get')
-    console.log(res)
+    // const res = service('/test',{},'get')
+    // console.log(res)
   },
   methods: {
     Qh() {
