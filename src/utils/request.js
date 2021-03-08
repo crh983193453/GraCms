@@ -1,5 +1,5 @@
 import Axios from "axios";
-
+import config from "@/utils/config"
 // const service = axios.create({
 // 	baseURL: configs.api_base_url,
 // 	withCredentials: true,
@@ -37,16 +37,21 @@ import Axios from "axios";
 function service(urls,param,methods){
 	return new Promise((resolve,reject)=>{
 		new Axios({
-			url:`http://10.129.3.115:8088'+${urls}`,
+			url: config.baseUrl+`${urls}`,
 			data:param,
-			method:methods?methods:'POST',
-			success:(res)=>{
-				resolve(res)
+			headers:{
+				'Session':localStorage.getItem('session')==null?'':localStorage.getItem('session')
 			},
-			fail:(err)=>{
-				reject(err)
-			}
+			method:methods?methods:'POST',
+		}).then((res)=>{
+			console.log(res)
+			resolve(res.data)
+		}).catch((err)=>{
+			reject(err)
 		})
+	}).catch((err)=>{
+		// resolve{msg:}
+		console.log(err)
 	})
 }
 

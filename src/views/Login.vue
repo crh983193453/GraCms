@@ -29,7 +29,7 @@
             <div class="forget" @click="forget">忘记密码</div>
           </div>
           <div class="options">
-            <el-button type="primary" @click="sub">登陆</el-button>
+            <el-button type="primary" @click="logins">登陆</el-button>
           </div>
           <div class="options">
             <span class="reg" @click="Qh"> 去注册 </span>
@@ -69,7 +69,7 @@
             ></el-input>
           </div>
           <div class="options">
-            <el-button type="primary" @click="sub">注册</el-button>
+            <el-button type="primary" @click="register">注册</el-button>
           </div>
           <div class="options">
             <span class="reg" @click="Qh"> 去登陆 </span>
@@ -89,7 +89,7 @@
 </template>
 
 <script>
-// import service from "@/utils/request"
+import {api} from "@/api/api.js";
 export default {
   data() {
     return {
@@ -99,15 +99,20 @@ export default {
       passwordAgain: "",
     };
   },
-  created() {
-    // const res = service('/test',{},'get')
-    // console.log(res)
-  },
   methods: {
+    async logins(){
+      let param={
+        userAccount:this.name,
+        userPassword:this.password
+      }
+      const result = await api.login(param)
+      localStorage.setItem("session",result.data)
+      console.log(localStorage.getItem("session"))
+    },
     Qh() {
       this.isReg = !this.isReg;
     },
-    sub() {
+    async register() {
       if (this.isReg) {
         if (this.password != this.passwordAgain) {
           this.$messageBox.alert("两次密码输入不一致！", "错误", {
@@ -119,8 +124,12 @@ export default {
           });
           return;
         } else {
-          this.$message.success("注册成功");
-          this.$router.push({ name: "Home" });
+          let param={
+            userAccount:this.name,
+            userPassword:this.passwordAgain
+          }
+          const result = await api.register(param)
+          console.log(result)
         }
       } else {
         this.$message.success("登陆成功");

@@ -14,7 +14,6 @@ export default {
   created() {
     var doc = document.body.clientWidth;
     var rem = doc / 192;
-    console.log(rem)
     document.documentElement.style.fontSize = rem + "px";
   },
   methods: {
