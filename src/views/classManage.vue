@@ -65,10 +65,10 @@
 </template>
 
 <script>
-import modal from '../components/modal.vue';
+import Modal from '../components/modal.vue';
 export default {
   components:{
-    modal
+    Modal
   },
   data() {
     return {

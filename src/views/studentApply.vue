@@ -13,11 +13,11 @@
     </div>
     <div class="tables">
       <el-table :data="tableData" border style="width: 130rem">
-        <el-table-column prop="date" label="日期" width="150">
+        <el-table-column prop="leaveApprove.createDate" label="日期" width="150">
         </el-table-column>
-        <el-table-column prop="name" label="姓名" width="120">
+        <el-table-column prop="sponsor" label="姓名" width="120">
         </el-table-column>
-        <el-table-column prop="reason" label="理由" width="120">
+        <el-table-column prop="leaveApprove.reason" label="理由" width="120">
         </el-table-column>
         <el-table-column prop="reason" label="分院" width="120">
         </el-table-column>
@@ -25,11 +25,9 @@
         </el-table-column>
         <el-table-column prop="reason" label="班主任" width="120">
         </el-table-column>
-        <el-table-column prop="reason" label="辅导员" width="120">
+        <el-table-column prop="leaveApprove.createDate" label="开始时间" width="120">
         </el-table-column>
-        <el-table-column prop="startTime" label="开始时间" width="120">
-        </el-table-column>
-        <el-table-column prop="endTime" label="结束时间" width="120">
+        <el-table-column prop="leaveApprove.endTime" label="结束时间" width="120">
         </el-table-column>
         <el-table-column prop="status" label="状态" width="120">
         </el-table-column>
@@ -90,11 +88,12 @@
     </Mask>
   </div>
 </template> 
-<script> 
-import mask from "../components/mask.vue";
+<script>
+import {api} from "../api/api.js"
+import Mask from "../components/mask.vue";
 export default {
   components: {
-    mask,
+    Mask,
   },
   data() {
     return {
@@ -102,20 +101,22 @@ export default {
       showMask: false,
       preview: "",
       index: "",
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          reason: "上海",
-          startTime: "2020-11-23",
-          endTime: "2020-11-26",
-          administrator: "陈儒浩",
-          status: "未审批",
-        },
-      ],
+      tableData: [],
     };
   },
+  created(){
+    this.getLists()
+  },
   methods: {
+    async getLists(){
+      const resultList = await api.approve('1','0','0','10')
+      console.log(resultList)
+      resultList.data.data.forEach((ele)=>{
+        ele.createDate=new Date(ele.createDate)
+        ele.approveStatus==1?'未审批':'已审批'
+        this.tableData.push(ele)
+      })
+    },
     maskClick(e, index) {
       this.preview = e;
       this.index = index;
@@ -144,12 +145,13 @@ export default {
 }
 .dataScreen {
   position: relative;
-  margin-left: 5rem;
+  left: 10rem;
+  top: 5rem;
 }
 .tables {
-  // position: relative;
-  margin-top: 4rem;
-  // left: 20rem;
+  position: relative;
+  top: 10rem;
+  left: 10rem;
   width: 130rem;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
 }

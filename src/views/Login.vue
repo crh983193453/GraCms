@@ -107,7 +107,7 @@ export default {
       }
       const result = await api.login(param)
       localStorage.setItem("session",result.data)
-      console.log(localStorage.getItem("session"))
+      this.$router.push({name:'Home'})
     },
     Qh() {
       this.isReg = !this.isReg;
@@ -129,7 +129,8 @@ export default {
             userPassword:this.passwordAgain
           }
           const result = await api.register(param)
-          console.log(result)
+          localStorage.setItem("session",result.data)
+          this.$router.push({name:'Home'})
         }
       } else {
         this.$message.success("登陆成功");
@@ -145,7 +146,6 @@ export default {
       });
     },
   },
-  mounted() {},
 };
 </script>
 

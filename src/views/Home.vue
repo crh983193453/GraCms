@@ -58,10 +58,10 @@
 </template>
 
 <script>
-import headers from "@/components/header.vue";
+import Headers from "@/components/header.vue";
 export default {
   components: {
-    headers,
+    Headers,
   },
   data() {
     return {

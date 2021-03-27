@@ -63,10 +63,15 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to,from,next)=>{
-  if(to.meta.name){
+  if(localStorage.getItem("session")){
     window.document.title=to.meta.name
+    next()
+  }else if(to.path=='/'){
+    next()
+  }else{
+    Vue.prototype.$message.error("您还未登陆！")
+    next({name:'Login'})
   }
-  next()
 })
 
 export default router
