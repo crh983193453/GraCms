@@ -1,12 +1,6 @@
 <template>
   <div>
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column label="入学日期" width="180">
-        <template slot-scope="scope">
-          <i class="el-icon-time"></i>
-          <span style="margin-left: 10px">{{ scope.row.date }}</span>
-        </template>
-      </el-table-column>
       <el-table-column label="姓名" width="180">
         <template slot-scope="scope">
           <el-tag size="medium">{{ scope.row.name }}</el-tag>

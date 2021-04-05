@@ -4,12 +4,14 @@
     <div class="dataScreen">
       <el-date-picker
         type="daterange"
+        value-format="yyyy-MM-dd"
         range-separator="至"
         start-placeholder="开始日期"
         end-placeholder="结束日期"
+        v-model="times"
       >
       </el-date-picker>
-      <el-button type="primary">查询</el-button>
+      <el-button type="primary" @click="search">查询</el-button>
     </div>
     <div class="tables">
       <el-table :data="tableData" border style="width: 130rem">
@@ -29,9 +31,9 @@
         </el-table-column>
         <el-table-column prop="leaveApprove.endTime" label="结束时间" width="120">
         </el-table-column>
-        <el-table-column prop="status" label="状态" width="120">
+        <el-table-column prop="approveStatus" label="状态" width="120">
         </el-table-column>
-        <el-table-column prop="administrator" label="审批人" width="120">
+        <el-table-column prop="approver" label="审批人" width="120">
         </el-table-column>
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
@@ -102,6 +104,7 @@ export default {
       preview: "",
       index: "",
       tableData: [],
+      times:""
     };
   },
   created(){
@@ -113,9 +116,11 @@ export default {
       console.log(resultList)
       resultList.data.data.forEach((ele)=>{
         ele.createDate=new Date(ele.createDate)
-        ele.approveStatus==1?'未审批':'已审批'
+        ele.approveStatus==0?ele.approveStatus='未审批':ele.approveStatus==1?ele.approveStatus='已审批':ele.approveStatus='已拒绝'
+        ele.approver==''?ele.approver='待审批':ele.approver
         this.tableData.push(ele)
       })
+      console.log(this.tableData)
     },
     maskClick(e, index) {
       this.preview = e;
@@ -125,12 +130,21 @@ export default {
     imgMasks() {
       this.imgMask = !this.imgMask;
     },
-    agree() {
+    search(){
+      console.log(this.times,typeof(this.times))
+    },
+    async agree() {
+      const result = await api.sell({appId:this.preview.approveId,pass:true})
+      console.log(result)
+      console.log(this.preview)
       this.$message.success("已同意");
       this.showMask = !this.showMask;
       this.tableData[this.index].status = "已同意";
     },
-    refuse() {
+    async refuse() {
+      const result = await api.sell({appId:this.preview.approveId,pass:false})
+      console.log(result)
+      console.log(this.preview)
       this.$message.error("已拒绝");
       this.showMask = !this.showMask;
       this.tableData[this.index].status = "已拒绝";

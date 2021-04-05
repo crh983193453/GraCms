@@ -3,7 +3,7 @@
     <div class="form">
       <transition name="imgPush">
         <div class="mid" v-show="!isReg">
-          <img src="../static/img/4.jpg" alt="" />
+          <img src="../static/img/logo.png" alt="" />
         </div>
       </transition>
       <transition name="push">
@@ -81,7 +81,7 @@
       </transition>
       <transition name="imgPush">
         <div class="mid" v-show="isReg">
-          <img src="../static/img/Navy.jpg" alt="" />
+          <img src="../static/img/logo.png" alt="" />
         </div>
       </transition>
     </div>
@@ -100,13 +100,13 @@ export default {
     };
   },
   methods: {
-    async logins(){
-      let param={
-        userAccount:this.name,
-        userPassword:this.password
-      }
-      const result = await api.login(param)
-      localStorage.setItem("session",result.data)
+    logins(){
+      // let param={
+      //   userAccount:this.name,
+      //   userPassword:this.password
+      // }
+      // const result = await api.login(param)
+      // localStorage.setItem("session",result.data)
       this.$router.push({name:'Home'})
     },
     Qh() {
